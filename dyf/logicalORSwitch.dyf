@@ -1,0 +1,215 @@
+{
+  "Uuid": "fe38b4c5-65cd-47ba-8a64-1697b16cf394",
+  "IsCustomNode": true,
+  "Category": "Test.utils",
+  "Description": "boolsフィールドの値のうちどれか一つがtrueの場合値を通過させる",
+  "Name": "logicalORSwitch",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "value",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": " 値"
+      },
+      "Id": "fa1fd5b018994b98b67b88b4d91c4006",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c573a150089e4f49b7e0b14a4a4bbd8a",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Python 標準ライブラリおよび DesignScript ライブラリをロード\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# このノードへの入力は、リスト形式で IN 変数に格納されます。\r\nvalue = IN[0]\r\nbools = IN[1]\r\n\r\n# この行の下にコードを配置します\r\nif any(bools):\r\n\tOUT = value\r\nelse:\r\n\tOUT = \"trueが含まれないため値が通過しませんでした。\"\r\n# 出力を OUT 変数に割り当てます。\r\n",
+      "VariableInputPorts": true,
+      "Id": "cba25a930127408e9bb238b64d155b81",
+      "Inputs": [
+        {
+          "Id": "7965089216104aa3b7fc7101cedd9370",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "30d2ac459a1f4b45afb8469009d9ea6b",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5bfe312670a349389f89eee3d7eee5d7",
+          "Name": "OUT",
+          "Description": "Python スクリプトの結果",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "埋め込み IronPython スクリプトを実行します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "bools",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": " boolリスト"
+      },
+      "Id": "d0f6588c421445fabfc484fdbde30d75",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6d49a33abc014fd0a60cd576f57e9113",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "// 値\r\nvalue",
+      "Id": "901eb22806bd43ec801110eb2c207770",
+      "Inputs": [
+        {
+          "Id": "4e361de1658c46b0b9c2b72a0c719bce",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "関数の出力、カスタム ノードで使用"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "c573a150089e4f49b7e0b14a4a4bbd8a",
+      "End": "7965089216104aa3b7fc7101cedd9370",
+      "Id": "59550e42440a47c6921073306c7b024e"
+    },
+    {
+      "Start": "5bfe312670a349389f89eee3d7eee5d7",
+      "End": "4e361de1658c46b0b9c2b72a0c719bce",
+      "Id": "28cfe9f99380431eac86784d2ef332ad"
+    },
+    {
+      "Start": "6d49a33abc014fd0a60cd576f57e9113",
+      "End": "30d2ac459a1f4b45afb8469009d9ea6b",
+      "Id": "341fa252f2cf4c56bb187535b75582b4"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "背景プレビュー",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "fa1fd5b018994b98b67b88b4d91c4006",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 737.0,
+        "Y": 322.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "論理和スイッチ",
+        "Id": "cba25a930127408e9bb238b64d155b81",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 980.0,
+        "Y": 320.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "d0f6588c421445fabfc484fdbde30d75",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 735.0,
+        "Y": 412.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "901eb22806bd43ec801110eb2c207770",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1226.0,
+        "Y": 319.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

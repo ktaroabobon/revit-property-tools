@@ -1,0 +1,522 @@
+{
+  "Uuid": "40b024c9-044f-408d-b76f-640e7aad6280",
+  "IsCustomNode": true,
+  "Category": "Test.ifc.filter",
+  "Description": "stringのパラメータのElementsをFilterする",
+  "Name": "stringParamFilter",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "List": {
+        "Key": "List",
+        "Value": "BuiltIn.ds"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "element",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": " Elements"
+      },
+      "Id": "031e6ae8b1974fdea0662011001f889b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d38d3bf179d743cd87517184ba267748",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Python 標準ライブラリおよび DesignScript ライブラリをロード\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# このノードへの入力は、リスト形式で IN 変数に格納されます。\r\nelements = IN[0]\r\nparams = IN[1]\r\ncorrect_values = IN[2]\r\n\r\nok = list()\r\nng = list()\r\n\r\nif type(correct_values) is str:\r\n\tcorrect_values = [correct_values]\r\n\t\r\n# この行の下にコードを配置します\r\nfor e, p in zip(elements, params):\r\n\tif p in correct_values:\r\n\t\tok.append(e)\r\n\telse:\r\n\t\tng.append(e)\r\n\t\t\r\n# 出力を OUT 変数に割り当てます。\r\nOUT = [ok, ng]",
+      "VariableInputPorts": true,
+      "Id": "0f3be550e34b487f85ff642f7452719c",
+      "Inputs": [
+        {
+          "Id": "066b926c79d84ce3b2f845c965d60f3c",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3337055d84ee43a19d5bf780439d04d2",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ccd8f2f1aa444c1a92e986a91b109e1f",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "945823272cfd4ca29e11003bc4593b59",
+          "Name": "OUT",
+          "Description": "Python スクリプトの結果",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "埋め込み IronPython スクリプトを実行します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "0;\n1;",
+      "Id": "9d51bb7687eb41b0ba09f76df768338a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "42b5a09ab92f4c0c99f98bf7863f1339",
+          "Name": "",
+          "Description": "行 1 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "59d06354594b4317801b3e9b7e1b4873",
+          "Name": "",
+          "Description": "行 2 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "DesignScript のコードを直接作成することができます。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "param",
+        "TypeName": "string",
+        "TypeRank": 0,
+        "DefaultValue": null,
+        "Description": " Parameter"
+      },
+      "Id": "6c81049ab92041a98ec32518e8e7914e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ca7b809ea24746b3b11c4ec8584bffbe",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetParameterValueByName@string",
+      "Id": "83b6068b138f48619124c1ada2eab557",
+      "Inputs": [
+        {
+          "Id": "9d7ddb1497824a5198e05d8d0b284920",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "55f8d61d8470431aacfdfcb265384c7c",
+          "Name": "parameterName",
+          "Description": "取得する値を持つパラメータの名前。\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5eeb5c3030634b59909da25ab39fdae1",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "要素のパラメータのいずれかの値を取得します。\n\nElement.GetParameterValueByName (parameterName: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
+      "Id": "a73bb273e80844d5863f7ff7f1a854ef",
+      "Inputs": [
+        {
+          "Id": "e23fdd27b17246faaa7868c933e2ff33",
+          "Name": "list",
+          "Description": "項目を取得するリスト。\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "296dcb618767413f886caab01402be7f",
+          "Name": "index",
+          "Description": "取得する項目のインデックス。\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8d580b08f43e45a7a4cad5ead64238d7",
+          "Name": "item",
+          "Description": "リスト内の特定のインデックスの項目。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "リストの、指定されたインデックスにある項目を取得します。\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
+      "Id": "f2defaecc3aa4b6a9b98b202cb2c0526",
+      "Inputs": [
+        {
+          "Id": "a6fed0b3b7484c14a04ecf0037700c53",
+          "Name": "list",
+          "Description": "項目を取得するリスト。\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2d4f81e12f284ca2a13acfc1cd0d66cc",
+          "Name": "index",
+          "Description": "取得する項目のインデックス。\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0c6cc19de9e74c738add77864c3d1865",
+          "Name": "item",
+          "Description": "リスト内の特定のインデックスの項目。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "リストの、指定されたインデックスにある項目を取得します。\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "// 適合Elements\r\nok",
+      "Id": "60ef2301f8a946388f1718f2237c94ff",
+      "Inputs": [
+        {
+          "Id": "d73276124b5c4ddf9c089224da809c00",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "関数の出力、カスタム ノードで使用"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "// 不適合Elements\r\nng",
+      "Id": "e93ebb3f089444fe9f79f8d584e8fd9b",
+      "Inputs": [
+        {
+          "Id": "2df9c11d47da4a50a9a265f746cf5ae1",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "関数の出力、カスタム ノードで使用"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "values",
+        "TypeName": "string",
+        "TypeRank": 1,
+        "DefaultValue": null,
+        "Description": " Target parameter values"
+      },
+      "Id": "f98e7d7ccf944b62adf666ba1086a789",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e87aae3427c940f08366a10f7dc870cf",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d38d3bf179d743cd87517184ba267748",
+      "End": "9d7ddb1497824a5198e05d8d0b284920",
+      "Id": "750fb6e3ad5149448c1bef280b7364a1"
+    },
+    {
+      "Start": "d38d3bf179d743cd87517184ba267748",
+      "End": "066b926c79d84ce3b2f845c965d60f3c",
+      "Id": "0a6579be67684d8cb973dc56dcd097cc"
+    },
+    {
+      "Start": "945823272cfd4ca29e11003bc4593b59",
+      "End": "e23fdd27b17246faaa7868c933e2ff33",
+      "Id": "f747a4cfe75c439bafe2a1023ec382ed"
+    },
+    {
+      "Start": "945823272cfd4ca29e11003bc4593b59",
+      "End": "a6fed0b3b7484c14a04ecf0037700c53",
+      "Id": "2af2d8ed86c34562a9fb7d887fc25bc1"
+    },
+    {
+      "Start": "42b5a09ab92f4c0c99f98bf7863f1339",
+      "End": "296dcb618767413f886caab01402be7f",
+      "Id": "1e2c61d5d5894406b90f3879a80570ca"
+    },
+    {
+      "Start": "59d06354594b4317801b3e9b7e1b4873",
+      "End": "2d4f81e12f284ca2a13acfc1cd0d66cc",
+      "Id": "7df9751eb5a54c64bbb0b17fc21e03eb"
+    },
+    {
+      "Start": "ca7b809ea24746b3b11c4ec8584bffbe",
+      "End": "55f8d61d8470431aacfdfcb265384c7c",
+      "Id": "367a3c224c4540aaa3703cdb09b68b39"
+    },
+    {
+      "Start": "5eeb5c3030634b59909da25ab39fdae1",
+      "End": "3337055d84ee43a19d5bf780439d04d2",
+      "Id": "6e2113069be14b72bfeecb70ba1dab12"
+    },
+    {
+      "Start": "8d580b08f43e45a7a4cad5ead64238d7",
+      "End": "d73276124b5c4ddf9c089224da809c00",
+      "Id": "edd4db172b404515b17a811201ebbf79"
+    },
+    {
+      "Start": "0c6cc19de9e74c738add77864c3d1865",
+      "End": "2df9c11d47da4a50a9a265f746cf5ae1",
+      "Id": "97f7e74a8db745be900669e56658eef5"
+    },
+    {
+      "Start": "e87aae3427c940f08366a10f7dc870cf",
+      "End": "ccd8f2f1aa444c1a92e986a91b109e1f",
+      "Id": "86c7cb410738457ba63050aa7496c50f"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "背景プレビュー",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "031e6ae8b1974fdea0662011001f889b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 18.0,
+        "Y": 189.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "0f3be550e34b487f85ff642f7452719c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 145.0,
+        "Y": 37.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "9d51bb7687eb41b0ba09f76df768338a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "6c81049ab92041a98ec32518e8e7914e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 118.0,
+        "Y": 235.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.GetParameterValueByName",
+        "Id": "83b6068b138f48619124c1ada2eab557",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 431.0,
+        "Y": 89.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.GetItemAtIndex",
+        "Id": "a73bb273e80844d5863f7ff7f1a854ef",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 115.0,
+        "Y": 255.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.GetItemAtIndex",
+        "Id": "f2defaecc3aa4b6a9b98b202cb2c0526",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 112.0,
+        "Y": 285.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "60ef2301f8a946388f1718f2237c94ff",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 70.0,
+        "Y": 247.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "e93ebb3f089444fe9f79f8d584e8fd9b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 119.0,
+        "Y": 355.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "f98e7d7ccf944b62adf666ba1086a789",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 458.0,
+        "Y": 288.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

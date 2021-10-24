@@ -1,0 +1,403 @@
+{
+  "Uuid": "d82736bf-80fb-4171-ac8f-8b22a5742741",
+  "IsCustomNode": true,
+  "Category": "Test.standardlaw.attachedtable",
+  "Description": "別表第一の(ろ)に関するノード",
+  "Name": "AttachedTable1_ro",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "building",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": " プロジェクト情報"
+      },
+      "Id": "821b0c0301bd43f39f1bc777f564aa94",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "058a9b5fd51b4da6bf11f5bbf90275b6",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "c18d1d41-04f3-4f72-80e1-6e0fdfb59b9e",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "217ac95b08c0439f88027e44ba3352e0",
+      "Inputs": [
+        {
+          "Id": "c28e72d49b304f9d9db265d664a5bebb",
+          "Name": "building",
+          "Description": " プロジェクト情報\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "565695df7fbe4d87a159959326ec0c58",
+          "Name": "number",
+          "Description": " 別表第一番号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "別表第1の(い)に関するノード"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "// 別表第一(ろ)における階\r\nstorey_number: int[]",
+      "Id": "e9ff203e5cb8423e84a1aacdd14b7c68",
+      "Inputs": [
+        {
+          "Id": "da09b67d3c9b4c7f8eaaa425ba570eaa",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "関数の出力、カスタム ノードで使用"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Python 標準ライブラリおよび DesignScript ライブラリをロード\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# このノードへの入力は、リスト形式で IN 変数に格納されます。\r\nnums = IN[0]\r\n\"\"\"\r\nnums: 別表第一の(い)による用途からの番号\r\n\r\n想定番号:\r\n\t1: 用途1\r\n\t2: 用途2\r\n\t3: 用途3\r\n\t4: 用途4\r\n\t5: 用途5\r\n\t6: 用途6\r\n\t-1: 対象外用途\r\n\r\n\"\"\"\r\n\r\ntarget = IN[1]\r\n\r\nrtn = list()\r\n# この行の下にコードを配置します\r\nfor n in nums:\r\n\tif n in target:\r\n\t\trtn.append(3)\r\n\telse:\r\n\t\trtn.append(-1)\r\n\t\t\t\r\n# 出力を OUT 変数に割り当てます。\r\nOUT = rtn",
+      "VariableInputPorts": true,
+      "Id": "c54fa21bb8c1446ca5f6e0b9a0c891a4",
+      "Inputs": [
+        {
+          "Id": "946fa55fea174e1a9f70eae94c3625f2",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "62e6350d2cde41dbabb90e53786816d7",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "621b0eace8424ec8b025540bd553ba82",
+          "Name": "OUT",
+          "Description": "Python スクリプトの結果",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "埋め込み IronPython スクリプトを実行します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "1;\n2;\n3;\n4;\n6;",
+      "Id": "bf63a0cbd592424bbe4a95272c8a3737",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d93f08afb60440368d5891d10124afd2",
+          "Name": "",
+          "Description": "行 1 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7532f92fc9c74355a85d182d2377f45c",
+          "Name": "",
+          "Description": "行 2 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b2a52db0c0e24032b002256f318574f1",
+          "Name": "",
+          "Description": "行 3 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2af320c5f0a245e6ab0b553c500acba2",
+          "Name": "",
+          "Description": "行 4 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "34b9d33e586b4667badac9bfa8609bbc",
+          "Name": "",
+          "Description": "行 5 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "DesignScript のコードを直接作成することができます。"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "82d9979c4cdd40cfa8eb648e3ab1a046",
+      "Inputs": [
+        {
+          "Id": "92be7cbf7235428e99bd4dc0c7f41119",
+          "Name": "item0",
+          "Description": "項目インデックス番号 0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "32767845f53a496cb57b29db0dc5ecdc",
+          "Name": "item1",
+          "Description": "項目インデックス番号 #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7382f385c8bf44cb82dcb9bd9571f876",
+          "Name": "item2",
+          "Description": "項目インデックス番号 #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b2344148eb174e09b75ad97d217929fc",
+          "Name": "item3",
+          "Description": "項目インデックス番号 #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2bd091b6634e464b8dc1059f40a38bfa",
+          "Name": "item4",
+          "Description": "項目インデックス番号 #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cd41534f8a824f4984f00b64fb133a8d",
+          "Name": "list",
+          "Description": "リスト",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "与えられた入力に基づいて新しいリストを作成します"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "058a9b5fd51b4da6bf11f5bbf90275b6",
+      "End": "c28e72d49b304f9d9db265d664a5bebb",
+      "Id": "a67bb1477cf744c3aa9d58ce69ed3f44"
+    },
+    {
+      "Start": "565695df7fbe4d87a159959326ec0c58",
+      "End": "946fa55fea174e1a9f70eae94c3625f2",
+      "Id": "e5418c2d0527415994f1a8cb0e4b8cdd"
+    },
+    {
+      "Start": "621b0eace8424ec8b025540bd553ba82",
+      "End": "da09b67d3c9b4c7f8eaaa425ba570eaa",
+      "Id": "1cfbd63ab84b45b8a0324a653e7c4517"
+    },
+    {
+      "Start": "d93f08afb60440368d5891d10124afd2",
+      "End": "92be7cbf7235428e99bd4dc0c7f41119",
+      "Id": "5671155ec7244d179e7845552236b77b"
+    },
+    {
+      "Start": "7532f92fc9c74355a85d182d2377f45c",
+      "End": "32767845f53a496cb57b29db0dc5ecdc",
+      "Id": "3eaaa27b87af4e02a9b10fc981826ead"
+    },
+    {
+      "Start": "b2a52db0c0e24032b002256f318574f1",
+      "End": "7382f385c8bf44cb82dcb9bd9571f876",
+      "Id": "477cd6bdf8114783935e5ab38a140aa2"
+    },
+    {
+      "Start": "2af320c5f0a245e6ab0b553c500acba2",
+      "End": "b2344148eb174e09b75ad97d217929fc",
+      "Id": "7469b1b6d48845f4a129e2dcb4a87227"
+    },
+    {
+      "Start": "34b9d33e586b4667badac9bfa8609bbc",
+      "End": "2bd091b6634e464b8dc1059f40a38bfa",
+      "Id": "6e810c120b364dcaaebe996bebd0238b"
+    },
+    {
+      "Start": "cd41534f8a824f4984f00b64fb133a8d",
+      "End": "62e6350d2cde41dbabb90e53786816d7",
+      "Id": "e133bd6474c44d03aa1dd823ab10ecac"
+    }
+  ],
+  "Dependencies": [
+    "c18d1d41-04f3-4f72-80e1-6e0fdfb59b9e"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Test package",
+      "Version": "0.0.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "217ac95b08c0439f88027e44ba3352e0"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "背景プレビュー",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "821b0c0301bd43f39f1bc777f564aa94",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 241.0,
+        "Y": 145.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "AttachedTable1_i",
+        "Id": "217ac95b08c0439f88027e44ba3352e0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 506.5,
+        "Y": 144.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "e9ff203e5cb8423e84a1aacdd14b7c68",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1099.9459756794047,
+        "Y": 147.3560050318473
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "用途による対象階の取得",
+        "Id": "c54fa21bb8c1446ca5f6e0b9a0c891a4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 845.0,
+        "Y": 146.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "対象番号",
+        "Id": "bf63a0cbd592424bbe4a95272c8a3737",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 470.0,
+        "Y": 294.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "82d9979c4cdd40cfa8eb648e3ab1a046",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 603.0,
+        "Y": 291.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

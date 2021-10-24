@@ -1,0 +1,869 @@
+{
+  "Uuid": "8f5d854d-77a9-4b0b-bde9-a12e255cceb0",
+  "IsCustomNode": true,
+  "Category": "Test.utils",
+  "Description": "適合要素と不適合要素にそれぞれ着色を行う",
+  "Name": "setColorOnOKandNG",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Color": {
+        "Key": "DSCore.Color",
+        "Value": "DSCoreNodes.dll"
+      },
+      "Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "OverrideGraphicSettings": {
+        "Key": "Revit.Filter.OverrideGraphicSettings",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
+      "Id": "5678885e97f44a638c58ccb115848a63",
+      "Inputs": [
+        {
+          "Id": "102ccef1c236488fbe888cb23c5b7483",
+          "Name": "list",
+          "Description": "項目を取得するリスト。\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "eafd6eaeb7244fb2a725e494a7a7ddc5",
+          "Name": "index",
+          "Description": "取得する項目のインデックス。\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3f801d64daec49319cb9086b0aa22774",
+          "Name": "item",
+          "Description": "リスト内の特定のインデックスの項目。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "リストの、指定されたインデックスにある項目を取得します。\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "0;\n1;",
+      "Id": "d7251baaf0bb476fb86f00c728eaf350",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f4da1b403c054459b735664efb01a8e3",
+          "Name": "",
+          "Description": "行 1 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "74dd56af1f7a4cfab6083f22fb82b886",
+          "Name": "",
+          "Description": "行 2 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "DesignScript のコードを直接作成することができます。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
+      "Id": "6b639d096aef4b18b4efa08fdbcf8a2b",
+      "Inputs": [
+        {
+          "Id": "5edb15ceba2445c2ba2c0142182362c8",
+          "Name": "list",
+          "Description": "項目を取得するリスト。\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d1eee147ee18471eae00527e42613fa5",
+          "Name": "index",
+          "Description": "取得する項目のインデックス。\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "27ab17fe9eb248e3ac502fccb94a285a",
+          "Name": "item",
+          "Description": "リスト内の特定のインデックスの項目。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "リストの、指定されたインデックスにある項目を取得します。\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "list",
+        "TypeName": "var",
+        "TypeRank": 0,
+        "DefaultValue": null,
+        "Description": " Elements(List[List[Element]]): リストに入れられた要素)"
+      },
+      "Id": "75136552798247378e722aad081d8198",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "324171179c5d44638892d9ab501eae22",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "cutFillColor1",
+        "TypeName": "DSCore.Color",
+        "TypeRank": 0,
+        "DefaultValue": null,
+        "Description": " color(color): 色１"
+      },
+      "Id": "8ab6db7758cc4f968672f50dcd9670a8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1f59204e7cc44df3af0fb91a0e2b4e38",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "cutFillColor2",
+        "TypeName": "DSCore.Color",
+        "TypeRank": 0,
+        "DefaultValue": null,
+        "Description": " color(color): 色2"
+      },
+      "Id": "c78579152e6a4e398448cc1ca302e799",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b8a220293ac246d3a5a5eb008d56a20c",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "Element",
+      "Id": "8788ee23dcd04f24af8b31bf65bc2fd7",
+      "Inputs": [
+        {
+          "Id": "81890be55c7840a29612d017f5c593df",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "関数の出力、カスタム ノードで使用"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "Element",
+      "Id": "25345edd7f4b445abd7f8a6ad3a1cbd7",
+      "Inputs": [
+        {
+          "Id": "373b87775bc649e1866679dc12fb413e",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "関数の出力、カスタム ノードで使用"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Filter.OverrideGraphicSettings.ByProperties@DSCore.Color,DSCore.Color,DSCore.Color,DSCore.Color,Revit.Elements.FillPatternElement,Revit.Elements.FillPatternElement,Revit.Elements.LinePatternElement,Revit.Elements.LinePatternElement,int,int,int,string,bool",
+      "Id": "1d0827ffab1c4291b11842ade55ac080",
+      "Inputs": [
+        {
+          "Id": "d7cf2e1b43e446009a338cd790f887ef",
+          "Name": "cutFillColor",
+          "Description": "塗り潰しの色\n\nColor\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ca0c7375c7714ad4aadbaadbfb9d2bf6",
+          "Name": "projectionFillColor",
+          "Description": "投影の色\n\nColor\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "74a428a1e6bc4f309bca5a6355a10543",
+          "Name": "cutLineColor",
+          "Description": "切断線の色\n\nColor\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c9ba1cc87bd14260a347c76d91d05c7c",
+          "Name": "projectionLineColor",
+          "Description": "投影線の色\n\nColor\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "20658fee6cac4d72bcb584ea2897d040",
+          "Name": "cutFillPattern",
+          "Description": "塗り潰しパターンの切り取り\n\nFillPatternElement\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5791bc05772c456db57247900a4d11fa",
+          "Name": "projectionFillPattern",
+          "Description": "塗り潰しパターンの投影\n\nFillPatternElement\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d83178b217314fb6a2671fc29d6e6fef",
+          "Name": "cutLinePattern",
+          "Description": "切断線のパターン\n\nLinePatternElement\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "294da449fd0443639c067c6d70fc6625",
+          "Name": "projectionLinePattern",
+          "Description": "投影線のパターン\n\nLinePatternElement\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c6750cb91f7c40ffaaf7f384625f6c9b",
+          "Name": "cutLineWeight",
+          "Description": "切断線の太さ\n\nint\n既定値 : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ce55baa8384643409ad36470216700bb",
+          "Name": "projectionLineWeight",
+          "Description": "投影線の太さ\n\nint\n既定値 : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d1cd54abd40b484eb57a38d37207ae3d",
+          "Name": "transparency",
+          "Description": "透過度(1 ～ 100 の間の整数で指定)。\n\nint\n既定値 : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3c2f9739cc34410eb0622c2a984ea35b",
+          "Name": "detailLevel",
+          "Description": "詳細レベル設定([簡略]、[詳細]など)。\n\nstring\n既定値 : \"Undefined\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "88519333406445899583a73757fc2b4c",
+          "Name": "halftone",
+          "Description": "ハーフトーン(true の場合はハーフトーン)。\n\nbool\n既定値 : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5b7aa4edf14f444bbc8bf9ab90618ce5",
+          "Name": "overrides",
+          "Description": "グラフィックス設定を変更",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "OverrideGraphicSettings 要素を作成します。\n\nOverrideGraphicSettings.ByProperties (cutFillColor: Color = null, projectionFillColor: Color = null, cutLineColor: Color = null, projectionLineColor: Color = null, cutFillPattern: FillPatternElement = null, projectionFillPattern: FillPatternElement = null, cutLinePattern: LinePatternElement = null, projectionLinePattern: LinePatternElement = null, cutLineWeight: int = -1, projectionLineWeight: int = -1, transparency: int = -1, detailLevel: string = \"Undefined\", halftone: bool = false): OverrideGraphicSettings"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.OverrideInView@Revit.Filter.OverrideGraphicSettings,bool",
+      "Id": "dcf1586ad36b45729906324e93e55e65",
+      "Inputs": [
+        {
+          "Id": "09522bef4a134ac3881b8e12dbeebcea",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "79721b6dab704f5e8fb822d5740bdb81",
+          "Name": "overrides",
+          "Description": "グラフィックス設定を上書きします。\n\nOverrideGraphicSettings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0d95113879a141c4b8a5d50c38a1c9a0",
+          "Name": "hide",
+          "Description": "true の場合、指定された要素が非表示になります。\n\nbool\n既定値 : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2a7e11571aff4248a1e0dd88ec00e477",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "アクティブなビューにおける要素のグラフィックス設定を上書きします。\n\nElement.OverrideInView (overrides: OverrideGraphicSettings, hide: bool = false): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Filter.OverrideGraphicSettings.ByProperties@DSCore.Color,DSCore.Color,DSCore.Color,DSCore.Color,Revit.Elements.FillPatternElement,Revit.Elements.FillPatternElement,Revit.Elements.LinePatternElement,Revit.Elements.LinePatternElement,int,int,int,string,bool",
+      "Id": "b7fe02ff4433493ea877a54eec419e91",
+      "Inputs": [
+        {
+          "Id": "11883767fbf74ef3b51d738a94f35758",
+          "Name": "cutFillColor",
+          "Description": "塗り潰しの色\n\nColor\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b670462f9d7145099c57a1282f2bd08a",
+          "Name": "projectionFillColor",
+          "Description": "投影の色\n\nColor\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "142c8dce0b9d4c268c3bbdf2c0a565ac",
+          "Name": "cutLineColor",
+          "Description": "切断線の色\n\nColor\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1606c1f22bdb47d2937c28e3326371d5",
+          "Name": "projectionLineColor",
+          "Description": "投影線の色\n\nColor\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "696ea3c1a08e4123aab7d735f44dd579",
+          "Name": "cutFillPattern",
+          "Description": "塗り潰しパターンの切り取り\n\nFillPatternElement\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "03355def952e4c0a8ccb5e686dcb19da",
+          "Name": "projectionFillPattern",
+          "Description": "塗り潰しパターンの投影\n\nFillPatternElement\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5e5c036d5f0943b0a45cb6986183f0b2",
+          "Name": "cutLinePattern",
+          "Description": "切断線のパターン\n\nLinePatternElement\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3182019ac43845258f8781a51031a84f",
+          "Name": "projectionLinePattern",
+          "Description": "投影線のパターン\n\nLinePatternElement\n既定値 : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d92c1a178ca74cae9cd089261688ad41",
+          "Name": "cutLineWeight",
+          "Description": "切断線の太さ\n\nint\n既定値 : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "14a7c5c4fc0f4489836be50f8a5edd24",
+          "Name": "projectionLineWeight",
+          "Description": "投影線の太さ\n\nint\n既定値 : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "18effb96b7fd4385a79cf41151469d9a",
+          "Name": "transparency",
+          "Description": "透過度(1 ～ 100 の間の整数で指定)。\n\nint\n既定値 : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4ae7499b9bf441dfaef246ec6df94054",
+          "Name": "detailLevel",
+          "Description": "詳細レベル設定([簡略]、[詳細]など)。\n\nstring\n既定値 : \"Undefined\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3d391181590b49a5a82ad47de16e1b8c",
+          "Name": "halftone",
+          "Description": "ハーフトーン(true の場合はハーフトーン)。\n\nbool\n既定値 : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dedbab5e48564f34ada208fe5ca5c7a8",
+          "Name": "overrides",
+          "Description": "グラフィックス設定を変更",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "OverrideGraphicSettings 要素を作成します。\n\nOverrideGraphicSettings.ByProperties (cutFillColor: Color = null, projectionFillColor: Color = null, cutLineColor: Color = null, projectionLineColor: Color = null, cutFillPattern: FillPatternElement = null, projectionFillPattern: FillPatternElement = null, cutLinePattern: LinePatternElement = null, projectionLinePattern: LinePatternElement = null, cutLineWeight: int = -1, projectionLineWeight: int = -1, transparency: int = -1, detailLevel: string = \"Undefined\", halftone: bool = false): OverrideGraphicSettings"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.OverrideInView@Revit.Filter.OverrideGraphicSettings,bool",
+      "Id": "e991abfc6b0140368b214889d4e127e8",
+      "Inputs": [
+        {
+          "Id": "86ad6829d5be49d2ab496499ef8266d0",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "74db4ab175f44962a005f5704edcbed3",
+          "Name": "overrides",
+          "Description": "グラフィックス設定を上書きします。\n\nOverrideGraphicSettings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9e6cb57b5749435b8967ff367f2ee4c8",
+          "Name": "hide",
+          "Description": "true の場合、指定された要素が非表示になります。\n\nbool\n既定値 : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0a9ac5b8c4dd4f82b6b57217ec277c24",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "アクティブなビューにおける要素のグラフィックス設定を上書きします。\n\nElement.OverrideInView (overrides: OverrideGraphicSettings, hide: bool = false): Element"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3f801d64daec49319cb9086b0aa22774",
+      "End": "09522bef4a134ac3881b8e12dbeebcea",
+      "Id": "a7b0e39897074a8e91194c4f5ebba133"
+    },
+    {
+      "Start": "f4da1b403c054459b735664efb01a8e3",
+      "End": "eafd6eaeb7244fb2a725e494a7a7ddc5",
+      "Id": "dea041a7768541ed81917198a0764d14"
+    },
+    {
+      "Start": "74dd56af1f7a4cfab6083f22fb82b886",
+      "End": "d1eee147ee18471eae00527e42613fa5",
+      "Id": "482fad7887704442882a92ffd45e3534"
+    },
+    {
+      "Start": "27ab17fe9eb248e3ac502fccb94a285a",
+      "End": "86ad6829d5be49d2ab496499ef8266d0",
+      "Id": "9339aa736afa4622a95742c4ac39cb6a"
+    },
+    {
+      "Start": "324171179c5d44638892d9ab501eae22",
+      "End": "102ccef1c236488fbe888cb23c5b7483",
+      "Id": "d34ce933110a463f88004319c3d407c3"
+    },
+    {
+      "Start": "324171179c5d44638892d9ab501eae22",
+      "End": "5edb15ceba2445c2ba2c0142182362c8",
+      "Id": "93acd94566334cbf8ae46821ceb6ffc7"
+    },
+    {
+      "Start": "1f59204e7cc44df3af0fb91a0e2b4e38",
+      "End": "d7cf2e1b43e446009a338cd790f887ef",
+      "Id": "de7eb6210368499895b262036ec51eb2"
+    },
+    {
+      "Start": "1f59204e7cc44df3af0fb91a0e2b4e38",
+      "End": "ca0c7375c7714ad4aadbaadbfb9d2bf6",
+      "Id": "608eb9bcdbc145c283c63bfa131db88f"
+    },
+    {
+      "Start": "1f59204e7cc44df3af0fb91a0e2b4e38",
+      "End": "74a428a1e6bc4f309bca5a6355a10543",
+      "Id": "442389e8aa0341b7a78305eac97a1946"
+    },
+    {
+      "Start": "1f59204e7cc44df3af0fb91a0e2b4e38",
+      "End": "c9ba1cc87bd14260a347c76d91d05c7c",
+      "Id": "211ced5f42df4620923d15c94c7c35b5"
+    },
+    {
+      "Start": "b8a220293ac246d3a5a5eb008d56a20c",
+      "End": "11883767fbf74ef3b51d738a94f35758",
+      "Id": "61b2e0c70cd045b5a63de8bf0019b7f2"
+    },
+    {
+      "Start": "b8a220293ac246d3a5a5eb008d56a20c",
+      "End": "b670462f9d7145099c57a1282f2bd08a",
+      "Id": "bedb2fa9f76e484eb49f539e91eb0ad0"
+    },
+    {
+      "Start": "b8a220293ac246d3a5a5eb008d56a20c",
+      "End": "142c8dce0b9d4c268c3bbdf2c0a565ac",
+      "Id": "d68266bf80ef4caa9559efd83dfb82a5"
+    },
+    {
+      "Start": "b8a220293ac246d3a5a5eb008d56a20c",
+      "End": "1606c1f22bdb47d2937c28e3326371d5",
+      "Id": "dae260d946cc456e87d9b29e2da1d23b"
+    },
+    {
+      "Start": "5b7aa4edf14f444bbc8bf9ab90618ce5",
+      "End": "79721b6dab704f5e8fb822d5740bdb81",
+      "Id": "f320d7bc02ff4ddc85f784e6a7c2caf5"
+    },
+    {
+      "Start": "2a7e11571aff4248a1e0dd88ec00e477",
+      "End": "81890be55c7840a29612d017f5c593df",
+      "Id": "6df0d7987d2344adb795f08913d349ee"
+    },
+    {
+      "Start": "dedbab5e48564f34ada208fe5ca5c7a8",
+      "End": "74db4ab175f44962a005f5704edcbed3",
+      "Id": "a7f17f20a5784d9288a747c0eda3652a"
+    },
+    {
+      "Start": "0a9ac5b8c4dd4f82b6b57217ec277c24",
+      "End": "373b87775bc649e1866679dc12fb413e",
+      "Id": "77f1c761493a47128388c954a9429c29"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "背景プレビュー",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "List.GetItemAtIndex",
+        "Id": "5678885e97f44a638c58ccb115848a63",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 370.55405075249433,
+        "Y": 19.0844494696008
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "d7251baaf0bb476fb86f00c728eaf350",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 212.67565296997583,
+        "Y": 116.6287604392578
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.GetItemAtIndex",
+        "Id": "6b639d096aef4b18b4efa08fdbcf8a2b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 374.00738830953242,
+        "Y": 228.70896246427449
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "75136552798247378e722aad081d8198",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -296.51332103744357,
+        "Y": 43.77101405790836
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "8ab6db7758cc4f968672f50dcd9670a8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -38.127248542045493,
+        "Y": -141.01024795417192
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "c78579152e6a4e398448cc1ca302e799",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 75.771747402977269,
+        "Y": 425.20390733040693
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "8788ee23dcd04f24af8b31bf65bc2fd7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1010.4323280139315,
+        "Y": 0.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "25345edd7f4b445abd7f8a6ad3a1cbd7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1023.1040129841556,
+        "Y": 194.35089739578473
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "OverrideGraphicSettings.ByProperties",
+        "Id": "1d0827ffab1c4291b11842ade55ac080",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 319.543836456183,
+        "Y": -394.62462479413375
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.OverrideInView",
+        "Id": "dcf1586ad36b45729906324e93e55e65",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 704.96800234285035,
+        "Y": -6.972517417807012
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "OverrideGraphicSettings.ByProperties",
+        "Id": "b7fe02ff4433493ea877a54eec419e91",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 333.48268992342952,
+        "Y": 427.76772977341716
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.OverrideInView",
+        "Id": "e991abfc6b0140368b214889d4e127e8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 716.37251881605232,
+        "Y": 188.17143112364579
+      }
+    ],
+    "Annotations": [],
+    "X": 39.882324004462617,
+    "Y": 536.08975794282628,
+    "Zoom": 0.68320669405256818
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "Uuid": "6d139d78-7571-45e9-ab9a-e6f5f84d0b58",
+  "IsCustomNode": true,
+  "Category": "Test.standardlaw.attachedtable",
+  "Description": "別表第一の(は)に関するノード",
+  "Name": "AttachedTable1_ha",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "building",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": " プロジェクト情報"
+      },
+      "Id": "72e0a50e73b64341999c44f8716285fa",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "13d62caf2c524a05925a55c411608e98",
+          "Name": "",
+          "Description": "記号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "c18d1d41-04f3-4f72-80e1-6e0fdfb59b9e",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "a41f5bf5e8634cc7914c2f97f38419b1",
+      "Inputs": [
+        {
+          "Id": "9bec3b71bc1c4525a1c3c4ad68904c32",
+          "Name": "building",
+          "Description": " プロジェクト情報\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fa89b4f843e34d1392d14117646833c0",
+          "Name": "number",
+          "Description": " 別表第一番号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "別表第1の(い)に関するノード"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Python 標準ライブラリおよび DesignScript ライブラリをロード\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# このノードへの入力は、リスト形式で IN 変数に格納されます。\r\n\r\nnums = IN[0]\r\n\"\"\"\r\nnums: 別表第一の(い)による用途からの番号\r\n\r\n想定番号:\r\n\t1: 用途1\r\n\t2: 用途2\r\n\t3: 用途3\r\n\t4: 用途4\r\n\t5: 用途5\r\n\t6: 用途6\r\n\t-1: 対象外用途\r\n\r\n\"\"\"\r\ntarget = {\r\n\t1: 200,\r\n\t2: 300,\r\n\t3: 2000,\r\n\t4: 500,\r\n\t5: 200,\r\n\t6: -1,\r\n\t-1: -1,\r\n}\r\n\r\nrtn = list()\r\n# この行の下にコードを配置します\r\nfor n in nums:\r\n\trtn.append(target[n])\r\n\t\t\t\r\n# 出力を OUT 変数に割り当てます。\r\nOUT = rtn",
+      "VariableInputPorts": true,
+      "Id": "19b22fe06a324225bc8e321cff516760",
+      "Inputs": [
+        {
+          "Id": "5ddfa31c50804487b8aa8f21e28141b9",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "db253f79ca434d1c8aef9cc664174338",
+          "Name": "OUT",
+          "Description": "Python スクリプトの結果",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "埋め込み IronPython スクリプトを実行します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "// 別表第一(は)における床面積の合計（以上）\r\ntotal_area: int[]",
+      "Id": "433fafba8bd64fc39e595882bad7ca95",
+      "Inputs": [
+        {
+          "Id": "4d9d5636d9e340d49cf8584744e26a66",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "関数の出力、カスタム ノードで使用"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "13d62caf2c524a05925a55c411608e98",
+      "End": "9bec3b71bc1c4525a1c3c4ad68904c32",
+      "Id": "eb2267013410433d81e181e404c8126d"
+    },
+    {
+      "Start": "fa89b4f843e34d1392d14117646833c0",
+      "End": "5ddfa31c50804487b8aa8f21e28141b9",
+      "Id": "b3d87dd691f44727a16ee88a20359a95"
+    },
+    {
+      "Start": "db253f79ca434d1c8aef9cc664174338",
+      "End": "4d9d5636d9e340d49cf8584744e26a66",
+      "Id": "3a838cdf036945769b28ab5c6aa83676"
+    }
+  ],
+  "Dependencies": [
+    "c18d1d41-04f3-4f72-80e1-6e0fdfb59b9e"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Test package",
+      "Version": "0.0.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "a41f5bf5e8634cc7914c2f97f38419b1"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "背景プレビュー",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "72e0a50e73b64341999c44f8716285fa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 986.5,
+        "Y": 482.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "AttachedTable1_i",
+        "Id": "a41f5bf5e8634cc7914c2f97f38419b1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1252.0,
+        "Y": 481.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "用途による対象床面積合計の取得",
+        "Id": "19b22fe06a324225bc8e321cff516760",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1553.1243844762912,
+        "Y": 482.99999999999989
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "433fafba8bd64fc39e595882bad7ca95",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1845.4459756794,
+        "Y": 484.35600503184696
+      }
+    ],
+    "Annotations": [],
+    "X": -1361.9042009751829,
+    "Y": -270.52534497472254,
+    "Zoom": 1.418036847216068
+  }
+}
