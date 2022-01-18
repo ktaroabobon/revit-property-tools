@@ -37,64 +37,6 @@
       "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
     },
     {
-      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
-      "NodeType": "PythonScriptNode",
-      "Code": "# Python 標準ライブラリおよび DesignScript ライブラリをロード\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\nimport operator\r\n\r\n# このノードへの入力は、リスト形式で IN 変数に格納されます。\r\nelements = IN[0]\r\nparams = IN[1]\r\ncompare_value = IN[2]\r\noper = IN[3]\r\n\r\nops = {\r\n    '==' : operator.eq,\r\n\t'<' : operator.lt,\r\n\t'<=' : operator.le,\r\n\t'>' : operator.gt,\r\n\t'>=' : operator.ge,\r\n\t'!=' : operator.ne,\r\n}\r\n\r\nok = list()\r\nng = list()\r\n\r\ndef eval_binary_expr(op1, oper, op2):\r\n    return ops[oper](op1, op2)\r\n\t\r\n# この行の下にコードを配置します\r\nfor e, p in zip(elements, params):\r\n\tif eval_binary_expr(e, oper, p):\r\n\t\tok.append(e)\r\n\telse:\r\n\t\tng.append(e)\r\n\t\t\r\n# 出力を OUT 変数に割り当てます。\r\nOUT = [ok, ng]",
-      "VariableInputPorts": true,
-      "Id": "0247e054db2b48978967a8dcfb32a04c",
-      "Inputs": [
-        {
-          "Id": "57a3171723dc49a68f89f5474e0fc711",
-          "Name": "IN[0]",
-          "Description": "Input #0",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "445da8a9485a429397948bdf973be8f8",
-          "Name": "IN[1]",
-          "Description": "Input #1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "f42a60d3cb1e4e1bb002e8940b5046a2",
-          "Name": "IN[2]",
-          "Description": "Input #2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "d6d494542e9248d7ab55db8fa240d8ec",
-          "Name": "IN[3]",
-          "Description": "Input #3",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "e6cc7ec97c1845289298c19b2286dd62",
-          "Name": "OUT",
-          "Description": "Python スクリプトの結果",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "埋め込み IronPython スクリプトを実行します。"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
       "Code": "0;\n1;",
@@ -270,9 +212,9 @@
       "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
       "NodeType": "InputNode",
       "Parameter": {
-        "Name": "value",
-        "TypeName": "int",
-        "TypeRank": 0,
+        "Name": "values",
+        "TypeName": "var",
+        "TypeRank": -1,
         "DefaultValue": null,
         "Description": " Target parameter values"
       },
@@ -359,6 +301,64 @@
       ],
       "Replication": "Disabled",
       "Description": "関数パラメータ: カスタムノードで使用。\r\n\r\nパラメータのタイプと既定値を指定できます。例:\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Python 標準ライブラリおよび DesignScript ライブラリをロード\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\nimport operator\r\n\r\n# このノードへの入力は、リスト形式で IN 変数に格納されます。\r\ndef tolist(obj1):\r\n\tif hasattr(obj1,\"__iter__\"):\r\n\t\treturn obj1\r\n\telse: \r\n\t\treturn [obj1]\r\n\r\nelements = IN[0]\r\nparams = IN[1]\r\ncompare_values = tolist(IN[2])\r\nconst = True\r\noper = IN[3]\r\n\r\nops = {\r\n    '==' : operator.eq,\r\n\t'<' : operator.lt,\r\n\t'<=' : operator.le,\r\n\t'>' : operator.gt,\r\n\t'>=' : operator.ge,\r\n\t'!=' : operator.ne,\r\n}\r\n\r\nok = list()\r\nng = list()\r\n\r\ndef check_2i(s):\r\n\ttry:\r\n\t\ti = int(s)\r\n\t\treturn True\r\n\texcept:\r\n\t\treturn False\r\n\r\ndef eval_binary_expr(op1, oper, op2):\r\n    return ops[oper](op1, op2)\r\n\t\r\n# この行の下にコードを配置します\r\nif len(elements) == len(compare_values):\r\n\tconst = False\r\n\r\nfor i, e in enumerate(elements):\r\n\tp = params[i]\r\n\tif check_2i(p):\r\n\t\tif const:\r\n\t\t\tcompare_value = compare_values[0]\r\n\t\telse:\r\n\t\t\tcompare_value = compare_values[i]\r\n\t\t\t\r\n\t\tif eval_binary_expr(int(p), oper, int(compare_value)):\r\n\t\t\tok.append(e)\r\n\t\t\tcontinue\r\n\tng.append(e)\r\n\t\t\r\n# 出力を OUT 変数に割り当てます。\r\nOUT = [ok, ng]",
+      "VariableInputPorts": true,
+      "Id": "6a7346173b514523ac8b3e6692699bfc",
+      "Inputs": [
+        {
+          "Id": "9b189a0d017544099436dc2164d29064",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e981c4323bc247868804c074c7e1d480",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "87685d3701134e9097df9cf450b801b8",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e9f13cec2ae4434fbb608ca44d6d8313",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c906c31067634020958b5bbd5f7572e3",
+          "Name": "OUT",
+          "Description": "Python スクリプトの結果",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "埋め込み IronPython スクリプトを実行します。"
     }
   ],
   "Connectors": [
@@ -369,18 +369,8 @@
     },
     {
       "Start": "85b7ac66d100480f81f8b2c36fce0ec9",
-      "End": "57a3171723dc49a68f89f5474e0fc711",
-      "Id": "4f379aa737e0464684a23ac52a2f3fb6"
-    },
-    {
-      "Start": "e6cc7ec97c1845289298c19b2286dd62",
-      "End": "e3824b5dec3a40238cde36faf956804c",
-      "Id": "8d1780c69a7e48b0afd70bbe9df4718f"
-    },
-    {
-      "Start": "e6cc7ec97c1845289298c19b2286dd62",
-      "End": "f672467ad86f40f3b7942c09a5489c0e",
-      "Id": "d4dc50a6635943d49af452a26ed4e9ef"
+      "End": "9b189a0d017544099436dc2164d29064",
+      "Id": "c199e5fb608c44e0b56d7548bd27ba24"
     },
     {
       "Start": "9d1527f9986a4c4db0237fa75322c20c",
@@ -394,8 +384,8 @@
     },
     {
       "Start": "cb49a6e96618407e89663562feec487c",
-      "End": "445da8a9485a429397948bdf973be8f8",
-      "Id": "2a810a9ea1664392977f1ce44a946826"
+      "End": "e981c4323bc247868804c074c7e1d480",
+      "Id": "988c83b010734f5988209fda24164836"
     },
     {
       "Start": "6aefcc27047f4989abac9e7fc23bfa79",
@@ -414,13 +404,23 @@
     },
     {
       "Start": "d83d910e4ced4bf4b742395ffaeaec75",
-      "End": "f42a60d3cb1e4e1bb002e8940b5046a2",
-      "Id": "a979c344d3ac4f338a9b1ac9f86845ab"
+      "End": "87685d3701134e9097df9cf450b801b8",
+      "Id": "5a97dcb235014bd2b26c9b893212236d"
     },
     {
       "Start": "f1f72281f5b447c7ada25655b75b72f7",
-      "End": "d6d494542e9248d7ab55db8fa240d8ec",
-      "Id": "e725b590d7864aa9ab7918dec4df05b9"
+      "End": "e9f13cec2ae4434fbb608ca44d6d8313",
+      "Id": "605a0b70ea344b6bb312b3126dbbcb91"
+    },
+    {
+      "Start": "c906c31067634020958b5bbd5f7572e3",
+      "End": "e3824b5dec3a40238cde36faf956804c",
+      "Id": "861549c45b6842d9bfeae7ddbc75077c"
+    },
+    {
+      "Start": "c906c31067634020958b5bbd5f7572e3",
+      "End": "f672467ad86f40f3b7942c09a5489c0e",
+      "Id": "ebfe49b79d2d4661ad74a68a645def9a"
     }
   ],
   "Dependencies": [],
@@ -457,16 +457,6 @@
         "Excluded": false,
         "X": -196.93064371313494,
         "Y": 33.828576834158127
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Python Script",
-        "Id": "0247e054db2b48978967a8dcfb32a04c",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 469.82918038804382,
-        "Y": 198.64303868296827
       },
       {
         "ShowGeometry": true,
@@ -557,11 +547,21 @@
         "Excluded": false,
         "X": -332.42415774797053,
         "Y": 292.39781106106636
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "6a7346173b514523ac8b3e6692699bfc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 453.01243792592288,
+        "Y": 203.01117952682552
       }
     ],
     "Annotations": [],
-    "X": 301.8104307136324,
-    "Y": 258.34547409799092,
-    "Zoom": 0.71698295155822689
+    "X": 567.995464553913,
+    "Y": 234.15941948592504,
+    "Zoom": 1.1246555155866336
   }
 }
